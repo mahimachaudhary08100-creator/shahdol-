@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shahdol GK Quiz - शहडोल सामान्य ज्ञान</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #eef2f7;
+    color: #222;
+}
+
+header {
+    background: linear-gradient(135deg,#064e3b,#10b981);
+    color: white;
+    text-align: center;
+    padding: 30px 10px;
+}
+
+header h1 {
+    font-size: 30px;
+}
+
+nav {
+    background: #064e3b;
+    padding: 13px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 10px;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 850px;
+    margin: 25px auto;
+    padding: 15px;
+}
+
+.card {
+    background: white;
+    padding: 22px;
+    margin-bottom: 18px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #0001;
+}
+
+h2 {
+    color: #047857;
+    margin-bottom: 15px;
+}
+
+.question {
+    font-size: 19px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.option {
+    display: block;
+    background: #f1f5f9;
+    padding: 13px;
+    border-radius: 8px;
+    margin: 10px 0;
+    cursor: pointer;
+    border: 1px solid #ddd;
+}
+
+.option:hover {
+    background: #d1fae5;
+}
+
+.option input {
+    margin-right: 10px;
+}
+
+button {
+    background: #059669;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 12px;
+}
+
+button:hover {
+    background: #047857;
+}
+
+#result {
+    font-size: 20px;
+    font-weight: bold;
+    color: #047857;
+    margin-top: 20px;
+}
+
+footer {
+    background: #064e3b;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>📚 शहडोल सामान्य ज्ञान</h1>
+    <p>Shahdol General Knowledge Quiz</p>
+    <p>शहडोल GK की तैयारी करें और अपना ज्ञान बढ़ाएं</p>
+</header>
+
+<nav>
+    <a href="#home">होम</a>
+    <a href="#about">शहडोल GK</a>
+    <a href="#quiz">ऑनलाइन टेस्ट</a>
+</nav>
+
+<div class="container" id="home">
+
+<div class="card" id="about">
+    <h2>शहडोल GK के बारे में</h2>
+    <p>
+    शहडोल मध्य प्रदेश का एक महत्वपूर्ण जिला एवं संभागीय मुख्यालय है।
+    यह क्षेत्र अपने इतिहास, संस्कृति, खनिज संपदा, वन और
+    प्राकृतिक सुंदरता के लिए जाना जाता है।
+    इस वेबसाइट पर शहडोल से संबंधित सामान्य ज्ञान के प्रश्न दिए गए हैं।
+    </p>
+</div>
+
+<div class="card">
+    <h2>📖 महत्वपूर्ण तथ्य</h2>
+    <p>1. शहडोल मध्य प्रदेश में स्थित है।</p>
+    <p>2. शहडोल एक संभागीय मुख्यालय है।</p>
+    <p>3. विराटेश्वर मंदिर सोहागपुर में स्थित है।</p>
+    <p>4. शहडोल क्षेत्र कोयला संसाधनों के लिए जाना जाता है।</p>
+    <p>5. शहडोल में हिंदी और बघेली बोली जाती हैं।</p>
+</div>
+
+<div class="card" id="quiz">
+    <h2>📝 Shahdol GK Online Test</h2>
+    <p id="progress"></p>
+    <div id="quizBox"></div>
+    <button id="nextBtn" onclick="nextQuestion()">अगला प्रश्न</button>
+    <div id="result"></div>
+    <button id="restartBtn" onclick="restartQuiz()" style="display:none">
+        दोबारा टेस्ट दें
+    </button>
+</div>
+
+</div>
+
+<footer>
+    <h3>Shahdol GK</h3>
+    <p>शहडोल सामान्य ज्ञान | मध्य प्रदेश</p>
+    <p>© 2026 Shahdol GK Quiz</p>
+</footer>
+
+<script>
+
+const questions = [
+{
+q:"शहडोल किस राज्य में स्थित है?",
+a:["उत्तर प्रदेश","मध्य प्रदेश","राजस्थान","छत्तीसगढ़"],
+correct:1
+},
+{
+q:"शहडोल किसका संभागीय मुख्यालय है?",
+a:["रीवा संभाग","जबलपुर संभाग","शहडोल संभाग","भोपाल संभाग"],
+correct:2
+},
+{
+q:"विराटेश्वर मंदिर कहां स्थित है?",
+a:["सोहागपुर","भोपाल","इंदौर","रीवा"],
+correct:0
+},
+{
+q:"शहडोल जिला किस क्षेत्र का हिस्सा है?",
+a:["मालवा","बुंदेलखंड","बघेलखंड","निमाड़"],
+correct:2
+},
+{
+q:"शहडोल किस खनिज के लिए प्रसिद्ध है?",
+a:["सोना","कोयला","हीरा","तांबा"],
+correct:1
+},
+{
+q:"शहडोल जिले का मुख्यालय कौन सा नगर है?",
+a:["उमरिया","अनूपपुर","शहडोल","बुढ़ार"],
+correct:2
+},
+{
+q:"शहडोल जिले का विभाजन किस वर्ष हुआ था?",
+a:["1998","2000","2003","2010"],
+correct:2
+},
+{
+q:"शहडोल क्षेत्र की प्रमुख स्थानीय भाषा कौन सी है?",
+a:["बघेली","पंजाबी","गुजराती","मलयालम"],
+correct:0
+},
+{
+q:"शहडोल में कौन सा प्रसिद्ध प्राचीन मंदिर है?",
+a:["महाकाल मंदिर","विराटेश्वर मंदिर","सांची स्तूप","खजुराहो मंदिर"],
+correct:1
+},
+{
+q:"शहडोल किस रेलवे स्टेशन के नाम से भी जाना जाता है?",
+a:["शहडोल रेलवे स्टेशन","हबीबगंज","भोपाल जंक्शन","इटारसी"],
+correct:0
+},
+{
+q:"शहडोल जिले में कौन सा मेडिकल कॉलेज है?",
+a:["AIIMS भोपाल","बिरसा मुंडा सरकारी मेडिकल कॉलेज","गांधी मेडिकल कॉलेज","इनमें से कोई नहीं"],
+correct:1
+},
+{
+q:"शहडोल का ऐतिहासिक संबंध किस क्षेत्र से रहा है?",
+a:["बघेलखंड","मेवाड़","कोंकण","मारवाड़"],
+correct:0
+},
+{
+q:"शहडोल में कौन सा वन वृक्ष पाया जाता है?",
+a:["साल","नारियल","सेब","चंदन ही"],
+correct:0
+},
+{
+q:"शहडोल किस देश में स्थित है?",
+a:["नेपाल","भारत","भूटान","बांग्लादेश"],
+correct:1
+},
+{
+q:"शहडोल जिले का मुख्यालय किस राज्य की राजधानी से संबंधित है?",
+a:["लखनऊ","रायपुर","भोपाल","जयपुर"],
+correct:2
+}
+];
+
+let current = 0;
+let score = 0;
+let answers = [];
+
+function loadQuestion() {
+
+    const q = questions[current];
+
+    document.getElementById("progress").innerText =
+    "प्रश्न " + (current + 1) + " / " + questions.length;
+
+    let html = `<div class="question">${current + 1}. ${q.q}</div>`;
+
+    q.a.forEach((option,index) => {
+        html += `
+        <label class="option">
+        <input type="radio" name="answer" value="${index}">
+        ${option}
+        </label>`;
+    });
+
+    document.getElementById("quizBox").innerHTML = html;
+}
+
+function nextQuestion() {
+
+    const selected = document.querySelector(
+        'input[name="answer"]:checked'
+    );
+
+    if (!selected) {
+        alert("कृपया एक उत्तर चुनें!");
+        return;
+    }
+
+    const answer = Number(selected.value);
+    answers[current] = answer;
+
+    if (answer === questions[current].correct) {
+        score++;
+    }
+
+    current++;
+
+    if (current < questions.length) {
+        loadQuestion();
+    } else {
+        showResult();
+    }
+}
+
+function showResult() {
+
+    document.getElementById("quizBox").style.display = "none";
+    document.getElementById("nextBtn").style.display = "none";
+    document.getElementById("progress").innerText = "टेस्ट पूरा हुआ!";
+
+    let percentage = Math.round(score / questions.length * 100);
+
+    document.getElementById("result").innerHTML = `
+        आपका टेस्ट पूरा हुआ!<br><br>
+        कुल प्रश्न: ${questions.length}<br>
+        सही उत्तर: ${score}<br>
+        गलत उत्तर: ${questions.length - score}<br>
+        आपका स्कोर: ${percentage}%<br><br>
+        ${percentage >= 80 ? "बहुत अच्छा! 🎉" :
+        percentage >= 50 ? "अच्छा प्रयास! 👍" :
+        "और अभ्यास करें! 📚"}
+    `;
+
+    let review = "<h3>उत्तर और समाधान</h3>";
+
+    questions.forEach((q,i) => {
+        review += `
+        <div class="card">
+        <b>${i+1}. ${q.q}</b><br>
+        आपका उत्तर: ${q.a[answers[i]]}<br>
+        सही उत्तर: <span style="color:green">
+        ${q.a[q.correct]}</span>
+        </div>`;
+    });
+
+    document.getElementById("result").innerHTML += review;
+    document.getElementById("restartBtn").style.display = "inline-block";
+}
+
+function restartQuiz() {
+    current = 0;
+    score = 0;
+    answers = [];
+
+    document.getElementById("quizBox").style.display = "block";
+    document.getElementById("nextBtn").style.display = "inline-block";
+    document.getElementById("restartBtn").style.display = "none";
+    document.getElementById("result").innerHTML = "";
+
+    loadQuestion();
+}
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>
